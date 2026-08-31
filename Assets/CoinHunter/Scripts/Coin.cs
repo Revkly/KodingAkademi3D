@@ -17,7 +17,6 @@ public class Coin : MonoBehaviour
         if (Other.CompareTag("Player"))
         {
             Other.GetComponent<Player>().AddScore(1);
-            Destroy(gameObject);
         }
     }
 }

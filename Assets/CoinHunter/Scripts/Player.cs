@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
         float x = Input.GetAxis("Horizontal") * moveSpeed;
         float z = Input.GetAxis("Vertical") * moveSpeed;
 
-        rig.linearVelocity = new Vector3(x, rig.linearVelocity.y, z);
+        rig.linearVelocity = new Vector3(x, 0, z);
 
         Vector3 vel = rig.linearVelocity;
         vel.y = 0;
