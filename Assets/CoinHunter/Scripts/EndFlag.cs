@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class EndFlag : MonoBehaviour
 {
-    public string nextSceneName;
+    public string nextSceneName = "Level2";
     public bool lastLevel;
 
     private void OnTriggerEnter(Collider other)
