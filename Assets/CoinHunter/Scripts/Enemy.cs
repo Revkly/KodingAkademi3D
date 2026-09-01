@@ -18,23 +18,13 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (movingToStart)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, startPos, speed * Time.deltaTime);
+        Vector3 targetPos = movingToStart ? startPos : startPos + (moveDirection * moveDistance);
 
-            if (transform.position == startPos)
-            {
-                movingToStart = false;
-            }
-        }
-        else
-        {
-            transform.position = Vector3.MoveTowards(transform.position, startPos + (moveDirection * moveDistance), speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
 
-            if (transform.position == startPos + (moveDirection * moveDistance ))
-            {
-                movingToStart = true;
-            }
+        if (Vector3.Distance(transform.position, targetPos) < 0.01f)
+        {
+            movingToStart = !movingToStart;
         }
     }
 
@@ -44,6 +34,5 @@ public class Enemy : MonoBehaviour
         {
             other.GetComponent<Player>().GameOver();
         }
-        
     }
 }

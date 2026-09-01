@@ -17,6 +17,8 @@ public class Coin : MonoBehaviour
         if (Other.CompareTag("Player"))
         {
             Other.GetComponent<Player>().AddScore(1);
+            // Teleport coin to a far away spot so player can see it move!
+            transform.position = new Vector3(4f, transform.position.y, 4f);
         }
     }
 }
