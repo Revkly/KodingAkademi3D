@@ -6,19 +6,34 @@ public class Coin : MonoBehaviour
 {
     public float rotateSpeed;
 
-    // Update is called once per frame
+    public float teleportRadius = 2f; 
+
     void Update()
     {
         transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter (Collider Other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (Other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            Other.GetComponent<Player>().AddScore(1);
-            // Teleport coin to a far away spot so player can see it move!
-            transform.position = new Vector3(4f, transform.position.y, 4f);
+            Vector2 randomOffset = Random.insideUnitCircle * teleportRadius;
+
+            Vector3 newPos = new Vector3(
+                transform.position.x + randomOffset.x,
+                transform.position.y,
+                transform.position.z + randomOffset.y
+            );
+
+            transform.position = newPos;
         }
     }
+
+//     private void OnTriggerEnter(Collider other)
+// {
+//     if (other.CompareTag("Player"))
+//     {
+//         Destroy(gameObject);
+//     }
+// }
 }
